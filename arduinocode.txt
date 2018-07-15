@@ -1,0 +1,52 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(10, 11); // RX, TX
+char junction1,color1,state1,color2,state2,color3,state3,junction2,color2_1,state2_1,color2_2,state2_2,color2_3,state2_3,junction3,color3_1,state3_1,color3_2,state3_2,color3_3,state3_3,junction4,color4_1,state4_1,color4_2,state4_2,color4_3,state4_3;
+void setup() {
+  pinMode(13, OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(8,OUTPUT);
+  
+Serial.begin(9600);
+mySerial.begin(9600);
+ 
+}
+
+void loop() {
+mySerial.println("Arduino");
+delay(1000);
+
+if(Serial.available())
+{
+
+ junction1=Serial.read();
+ Serial.print(junction1);
+}
+if(junction1=='A')
+{
+  digitalWrite(13,HIGH );
+  digitalWrite(10,LOW);
+  digitalWrite(6,HIGH);
+  digitalWrite(3,LOW);
+  digitalWrite(8,LOW);
+}
+else if(junction1=='B')
+{
+  digitalWrite(13,LOW);
+  digitalWrite(10,HIGH);
+  digitalWrite(3,HIGH);
+  digitalWrite(6,LOW);
+  digitalWrite(8,LOW);
+}
+else if(junction1=='0')
+{
+  digitalWrite(8,HIGH);
+  digitalWrite(13,LOW);
+  digitalWrite(10,LOW);
+  digitalWrite(3,LOW);
+  digitalWrite(6,LOW);
+}
+delay(5000);
+}
