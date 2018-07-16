@@ -1,6 +1,6 @@
 
 import json
-
+# Used for charts
 # Common base class for FC
 class FusionCharts:
 
