@@ -20,18 +20,6 @@ class trafficAtD(models.Model):
     time = models.TimeField(auto_now_add=True,)
     def __str__(self):
         return self.Trafficdensity,self.time
-class SignalA(models.Model):
-    Signal=models.CharField(max_length=1)
-    time=models.TimeField(auto_now_add=True)
-class SignalB(models.Model):
-    Signal=models.CharField(max_length=1)
-    time=models.TimeField(auto_now_add=True)
-class SignalC(models.Model):
-    Signal=models.CharField(max_length=1)
-    time=models.TimeField(auto_now_add=True)
-class SignalDs(models.Model):
-    Signal=models.CharField(max_length=1)
-    time=models.TimeField(auto_now_add=True)
 
 
 
