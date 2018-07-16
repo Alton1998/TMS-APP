@@ -7,8 +7,10 @@ from .fusioncharts import FusionCharts
 from tmsapp.models import trafficAtA,trafficAtB,trafficAtC,trafficAtD
 import math
 import paho.mqtt.client as mqtt
+# renders landing page
 def loginpage(request):
     return render(request,'loginpage.html',{})
+# server function for login
 def login(request):
     if request.method=='POST':
         username=request.POST['Username']
@@ -20,12 +22,15 @@ def login(request):
         else:
             stats='Unauthorized'
             return render(request,'loginpage.html',{'stats':stats})
+#         main page function, access restricted by login decorators
 @login_required(login_url='/loginpage/')
 def main(request):
+#     ordering data in for of ids
     DATA=trafficAtA.objects.all().order_by('id')
     DATA1=trafficAtB.objects.all().order_by('id')
     DATA2=trafficAtC.objects.all().order_by('id')
     DATA3=trafficAtD.objects.all().order_by('id')
+#     extracting last updated values in the data base
     DATAREV=DATA.reverse()[:1]
     for k in DATAREV:
         a=math.floor(k.Trafficdensity)
@@ -39,6 +44,7 @@ def main(request):
     for k in DATAREV3:
         d=math.floor(k.Trafficdensity)
     return render(request, 'main.html', {'a':a,'l':l,'c':c,'d':d})
+# server function for logout
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/loginpage/')
@@ -71,6 +77,7 @@ def automate(request):
          d = math.floor(k.Trafficdensity)
     client.loop_start()  # start the loo
     print("Publishing message to topic", "Signal")
+#     checking which opposite pairs of junction has high traffic
     if (a + c) > (l + d):
         client.publish("SignalAtAGreen/", "A")
     elif (l + d) > (a + c):
