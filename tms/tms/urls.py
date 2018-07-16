@@ -17,16 +17,23 @@ from django.contrib import admin
 from django.urls import path
 from . import views,views1
 urlpatterns = [
+#     django administration url
     path('admin/', admin.site.urls),
+#     url for landing page
     path('loginpage/',views.loginpage,name='loginpage'),
+#     url for login function
     path('login/',views.login,name='login'),
+#     url for main page
     path('main/',views.main,name='main'),
+#     urls for apis
     path('TrafficAtA/',views1.ListTrafficAtA.as_view()),
     path('TrafficAtB/',views1.ListTrafficAtB.as_view()),
     path('TrafficAtC/',views1.ListTrafficAtC.as_view()),
     path('TrafficAtD/',views1.ListTrafficAtD.as_view()),
     path('LatestTrafficAtA/',views1.ListLatestTrafficAtA.as_view()),
+#     url for logout
     path('logout/',views.logout,name='logout'),
-    path('manual/',views.manualoveride,name="manual"),
+    
+#     path('manual/',views.manualoveride,name="manual"),
     path('automate/',views.automate,name="automate"),
 ]
