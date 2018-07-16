@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from tmsapp.models import trafficAtD,trafficAtC,trafficAtB,trafficAtA
-
+# serializing database data
 class TrafficAtA(serializers.ModelSerializer):
     class Meta:
         model=trafficAtA
