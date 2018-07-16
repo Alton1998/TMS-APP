@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+# Creating models
 class trafficAtA(models.Model):
     Trafficdensity=models.FloatField()
     time=models.TimeField(auto_now_add=True)
