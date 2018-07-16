@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import TrafficAtA,TrafficAtB,TrafficAtC,TrafficAtD
 from tmsapp.models import trafficAtA,trafficAtB,trafficAtC,trafficAtD
+# defining functionalities of apis using class based views and also defining the permissions to access data through functions defined in the classes
 class ListTrafficAtA(APIView):
     def get(self,request):
         data=trafficAtA.objects.all()
